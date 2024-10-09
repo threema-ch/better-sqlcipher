@@ -1,13 +1,13 @@
 # ===
-# This is the main GYP file, which builds better-sqlite3 with SQLite3 itself.
+# This is the main GYP file, which builds better-sqlcipher.
 # ===
 
 {
   'includes': ['deps/common.gypi'],
   'targets': [
     {
-      'target_name': 'better_sqlite3',
-      'dependencies': ['deps/sqlite3.gyp:sqlite3'],
+      'target_name': 'better_sqlcipher',
+      'dependencies': ['deps/sqlcipher.gyp:sqlcipher'],
       'sources': ['src/better_sqlite3.cpp'],
       'cflags_cc': ['-std=c++20'],
       'xcode_settings': {
@@ -31,8 +31,8 @@
     },
     {
       'target_name': 'test_extension',
-      'dependencies': ['deps/sqlite3.gyp:sqlite3'],
-      'conditions': [['sqlite3 == ""', { 'sources': ['deps/test_extension.c'] }]],
+      'dependencies': ['deps/sqlcipher.gyp:sqlcipher'],
+      'sources': ['deps/test_extension.c'],
     },
   ],
 }
