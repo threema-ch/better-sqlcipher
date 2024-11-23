@@ -19,6 +19,9 @@
             '/std:c++20',
           ],
         },
+        'VCLinkerTool': {
+          'AdditionalOptions': ['/Brepro']
+        }
       },
       'conditions': [
         ['OS=="linux"', {
