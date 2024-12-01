@@ -20,7 +20,7 @@
           ],
         },
         'VCLinkerTool': {
-          'AdditionalOptions': ['/Brepro']
+          'AdditionalOptions': ['/Brepro', '/PDBALTPATH:%_PDB%'] # Reproducible builds
         }
       },
       'conditions': [
