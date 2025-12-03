@@ -1,13 +1,8 @@
 {
-  "name": "better-sqlite3",
-  "version": "12.4.6",
-  "description": "The fastest and simplest library for SQLite in Node.js.",
-  "homepage": "http://github.com/WiseLibs/better-sqlite3",
-  "author": "Joshua Wise <joshuathomaswise@gmail.com>",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/WiseLibs/better-sqlite3.git"
-  },
+  "name": "better-sqlcipher",
+  "version": "12.4.6-sqlcipher4.6.1-bearssl0.6",
+  "description": "better-sqlite3 built with SQLCipher",
+  "author": "Threema GmbH <opensource@threema.ch>",
   "main": "lib/index.js",
   "files": [
     "binding.gyp",
@@ -18,6 +13,7 @@
   "engines": {
     "node": "20.x || 22.x || 23.x || 24.x || 25.x"
   },
+  "types": "lib/index.d.ts",
   "dependencies": {
     "bindings": "^1.5.0",
     "prebuild-install": "^7.1.1"
@@ -32,24 +28,22 @@
     "cli-color": "^2.0.3",
     "fs-extra": "^11.1.1",
     "mocha": "^10.2.0",
-    "nodemark": "^0.3.0",
-    "prebuild": "^13.0.1",
-    "sqlite": "^5.0.1",
-    "sqlite3": "^5.1.6"
+    "tar": "^6.1.13"
   },
   "scripts": {
-    "install": "prebuild-install || node-gyp rebuild --release",
-    "build-release": "node-gyp rebuild --release",
-    "build-debug": "node-gyp rebuild --debug",
+    "install": "node-gyp rebuild --release -j max",
+    "build-release": "node-gyp rebuild --release -j max",
+    "build-debug": "node-gyp rebuild --debug -j max",
     "test": "mocha --exit --slow=75 --timeout=5000",
     "benchmark": "node benchmark",
-    "download": "bash ./deps/download.sh"
+    "download": "(cd deps && bash ./download.sh)"
   },
   "license": "MIT",
   "keywords": [
     "sql",
     "sqlite",
     "sqlite3",
+    "sqlcipher",
     "transactions",
     "user-defined functions",
     "aggregate functions",
