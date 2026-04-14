@@ -1,0 +1,34 @@
+workflow:
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_BRANCH
+
+image: docker.io/node:16-buster
+
+.cache: &cache
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+      - node_modules/
+
+audit:
+  stage: test
+  <<: *cache
+  script:
+    - rm .npmrc
+    - npm install --ignore-scripts --cache .npm
+    - npm audit
+  allow_failure: true
+
+build_and_test:
+  stage: test
+  <<: *cache
+  script:
+    - npm install --ignore-scripts --cache .npm
+    - npm run build-debug
+    - sed -i 's/Release/Debug/' lib/database.js
+    - sed -i 's/Release/Debug/' test/10.database.open.js
+    - npm run test
