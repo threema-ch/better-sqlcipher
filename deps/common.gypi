@@ -4,7 +4,10 @@
 # ===
 
 {
-  'variables': { 'sqlite3%': '' },
+  'variables': {
+    'sqlcipher_version%': '4.16.0', # Maps to SQLite 3.53.1
+    'bearssl_version%': '0.6',
+  },
   'target_defaults': {
     'default_configuration': 'Release',
     'msvs_settings': {
