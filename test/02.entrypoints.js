@@ -11,9 +11,9 @@ describe('entrypoints', function () {
 
 	before(function () {
 		if (!fs.existsSync(prebuild)) {
-			const configuration = fs.existsSync(path.join(__dirname, '..', 'build', 'Debug', 'better_sqlite3.node')) ? 'Debug' : 'Release';
+			const configuration = fs.existsSync(path.join(__dirname, '..', 'build', 'Debug', 'better_sqlcipher.node')) ? 'Debug' : 'Release';
 			fs.mkdirSync(path.dirname(prebuild), { recursive: true });
-			fs.copyFileSync(path.join(__dirname, '..', 'build', configuration, 'better_sqlite3.node'), prebuild);
+			fs.copyFileSync(path.join(__dirname, '..', 'build', configuration, 'better_sqlcipher.node'), prebuild);
 			removePrebuild = true;
 		}
 	});

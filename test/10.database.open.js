@@ -119,8 +119,8 @@ describe('new Database()', function () {
 	});
 	it('should accept the "nativeBinding" option', function () {
 		this.slow(500);
-		const configuration = fs.existsSync(path.resolve('build/Debug/better_sqlite3.node')) ? 'Debug' : 'Release';
-		const oldBinding = path.resolve(`build/${configuration}/better_sqlite3.node`);
+		const configuration = fs.existsSync(path.resolve('build/Debug/better_sqlcipher.node')) ? 'Debug' : 'Release';
+		const oldBinding = path.resolve(`build/${configuration}/better_sqlcipher.node`);
 		const newBinding = path.join(path.dirname(oldBinding), 'test.node');
 		expect(oldBinding).to.be.a('string');
 		fs.copyFileSync(oldBinding, newBinding);

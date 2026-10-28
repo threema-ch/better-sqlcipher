@@ -1,5 +1,5 @@
 # ===
-# This is the main GYP file, which builds better-sqlite3 with SQLite itself.
+# This is the main GYP file, which builds better-sqlcipher.
 # ===
 
 {
@@ -12,10 +12,10 @@
   },
   'targets': [
     {
-      'target_name': 'better_sqlite3',
+      'target_name': 'better_sqlcipher',
       'conditions': [
         ['force_build==1 or prebuild_exists==0', {
-          'dependencies': ['deps/sqlite3.gyp:sqlite3'],
+          'dependencies': ['deps/sqlcipher.gyp:sqlcipher'],
           'sources': ['src/better_sqlite3.cpp'],
           'include_dirs': ["<!@(node -p \"require('node-addon-api').include\")"],
           'defines': ['NAPI_VERSION=10', 'NAPI_DISABLE_CPP_EXCEPTIONS', 'NODE_API_SWALLOW_UNTHROWABLE_EXCEPTIONS'],
@@ -34,6 +34,7 @@
             },
             'VCLinkerTool': {
               'LinkTimeCodeGeneration': 1,
+              'AdditionalOptions': ['/Brepro', '/PDBALTPATH:%_PDB%'] # Reproducible builds
             },
           },
           'conditions': [['OS=="linux"', {
@@ -49,8 +50,8 @@
       'target_name': 'test_extension',
       'conditions': [
         ['force_build==1 or prebuild_exists==0', {
-          'dependencies': ['deps/sqlite3.gyp:sqlite3'],
-          'conditions': [['sqlite3 == ""', { 'sources': ['deps/test_extension.c'] }]],
+          'dependencies': ['deps/sqlcipher.gyp:sqlcipher'],
+          'sources': ['deps/test_extension.c'],
         }, {
           'type': 'none',
         }],
